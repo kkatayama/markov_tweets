@@ -1,5 +1,5 @@
 <html>
 <body>
-Capstone Project
+Markov Sentence Generator
 </body>
 </html>
