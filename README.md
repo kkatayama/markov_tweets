@@ -1,5 +1,5 @@
 <html>
 <body>
-Code for the Capstone Project
+Capstone Project
 </body>
 </html>
