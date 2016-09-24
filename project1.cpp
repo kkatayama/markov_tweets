@@ -39,7 +39,7 @@ int main (int argc, char *argv[]) {
       cout << sentences;
       cout << "\n\n\n\n\n\n\n";
 
-      /* Remove extra newline characters so each line is a sentence */
+      /* Remove newline and punctuation characters */
       sentences = replace(sentences, "\n", " ");
       sentences = replace(sentences, "'", "");
       sentences = replace(sentences, ",", "");

@@ -1,8 +1,25 @@
 //#include <stdio>
 #include <fstream>
 #include <iostream>
+
 using namespace std;
- 
+
+string replace(string text, string sub_string, string replace_string) {
+  int index = 0;
+
+  while (true) {
+    /* locate substring to replace */
+    index = text.find(sub_string, index);
+    if (index == string::npos)
+      return text;
+
+    /* make replacement */
+    text.replace(index, sub_string.length(), replace_string);
+
+    index += sub_string.length();
+  }
+}
+
 int main (int argc, char ** argv)
 {
    std::cout << "*******************************************************" << std::endl;
@@ -36,7 +53,16 @@ int main (int argc, char ** argv)
    string word; // We will use the word as a temp variable.
    while( fileReader >> word ) {
       // write the data to screen for now. We will use this info to build the vector of words
-      cout << word << endl;
+
+     word = replace(word, ".", "");
+     word = replace(word, ",", "");
+     word = replace(word, ";", "");
+     word = replace(word, ":", "");
+     word = replace(word, "?", "");
+     word = replace(word, "'", "");
+     word = replace(word, "!", "");
+     
+     cout << word << endl;
       // TODO: punctuation removal
       // TODO: Assign word to our vector
 
