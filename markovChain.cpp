@@ -1,6 +1,9 @@
 //#include <stdio>
 #include <fstream>
 #include <iostream>
+//#include <string>
+#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -37,8 +40,10 @@ int main (int argc, char ** argv)
        */
       return 1;
    }
+   
    // Inform user about file opening
    std::cout << argv[0] << " Attempting to open " << argv[1] << "!" << std::endl;
+
    // open a file in read mode.
    ifstream fileReader;
    fileReader.open(argv[1]); 
@@ -51,9 +56,11 @@ int main (int argc, char ** argv)
    // File open is a success! 
    cout << "Reading from the file:" << endl; 
    string word; // We will use the word as a temp variable.
+   vector<string> words;
+   
    while( fileReader >> word ) {
-      // write the data to screen for now. We will use this info to build the vector of words
 
+     // remove punctuation
      word = replace(word, ".", "");
      word = replace(word, ",", "");
      word = replace(word, ";", "");
@@ -61,15 +68,19 @@ int main (int argc, char ** argv)
      word = replace(word, "?", "");
      word = replace(word, "'", "");
      word = replace(word, "!", "");
-     
-     cout << word << endl;
-      // TODO: punctuation removal
-      // TODO: Assign word to our vector
 
-    }
+     // add word to vector of strings
+     words.push_back(word);
+
+   }
  
    // close the opened file.
    fileReader.close();
+
+   // print vector of words
+   for (int i = 0; i <  words.size(); i++) {
+     cout << words[i] << ", ";
+   }
 
    // TODO: Generate markovian sentences
 
