@@ -75,6 +75,9 @@ int main (int argc, char ** argv)
      words.push_back(word);
 
    }
+
+   // add ENDING for words
+   words.push_back("THE_END");
  
    // close the opened file.
    fileReader.close();
@@ -97,6 +100,15 @@ int main (int argc, char ** argv)
          map[words[i]+' '+words[i+1]].push_back(words[i+chain_length]);
      }
    }
+     
+   // print Markov chain table
+   for(auto itr = map.begin(); itr!=map.end(); itr++) {
+     std::cout<<itr->first<<":";
+     for(auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++){
+       std::cout<<*vitr<<",";
+     }
+     std::cout<<std::endl;
+   }
 
    // print first key of Markov chain table
    cout << "--------\n";
@@ -108,7 +120,6 @@ int main (int argc, char ** argv)
        cout << *vitr << ",";
      }
    }
-   
    if (chain_length == 2) {     
      auto itr = map.find(words[0]+' '+words[1]);
      cout << itr->first << ":";
@@ -117,17 +128,7 @@ int main (int argc, char ** argv)
        cout << *vitr << ",";
      }
    }
-
    cout << "\n--------\n";
-     
-   // print Markov chain table
-   for(auto itr = map.begin(); itr!=map.end(); itr++) {
-     std::cout<<itr->first<<":";
-     for(auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++){
-       std::cout<<*vitr<<",";
-     }
-     std::cout<<std::endl;
-   }
    
    // TODO: Generate markovian sentences
 
