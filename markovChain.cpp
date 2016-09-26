@@ -32,9 +32,9 @@ int main (int argc, char ** argv)
    std::cout << "* Alparslan Sari                                      *" << std::endl;
    std::cout << "*******************************************************" << std::endl;
    // Check the number of parameters
-   if (argc < 2) {
+   if (argc < 3) {
       // Tell the user how to run the program
-      std::cerr << "Usage: " << argv[0] << " NAME" << std::endl;
+      std::cerr << "Usage: " << argv[0] << " FILE_NAME" << " CHAIN_LENGTH" << std::endl;
       /* "Usage messages" are a conventional way of telling the user
        * how to run a program if they enter the command incorrectly.
        */
@@ -53,10 +53,12 @@ int main (int argc, char ** argv)
       cout << "Could not open file" << endl;
        return 1;
     }
+
    // File open is a success! 
    cout << "Reading from the file:" << endl; 
    string word; // We will use the word as a temp variable.
    vector<string> words;
+   int chain_length = stoi(argv[2]);
    
    while( fileReader >> word ) {
 
@@ -78,10 +80,55 @@ int main (int argc, char ** argv)
    fileReader.close();
 
    // print vector of words
+   cout << "| ";
    for (int i = 0; i <  words.size(); i++) {
-     cout << words[i] << ", ";
+     cout << words[i] << " | ";
+   }
+   cout << "\n";
+
+   // generate Markov chain table of fixed length
+   map< string, vector< string > > map;
+
+   for (int i = 0; i < words.size(); i++) {
+     if (i < (words.size() - chain_length)) {
+       if (chain_length == 1) 
+         map[words[i]].push_back(words[i+chain_length]);
+       if (chain_length == 2)
+         map[words[i]+' '+words[i+1]].push_back(words[i+chain_length]);
+     }
    }
 
+   // print first key of Markov chain table
+   cout << "--------\n";
+   if (chain_length == 1) {     
+     auto itr = map.find(words[0]);
+     cout << itr->first << ":";
+     for (auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++) {
+       //     cout << vitr->size();
+       cout << *vitr << ",";
+     }
+   }
+   
+   if (chain_length == 2) {     
+     auto itr = map.find(words[0]+' '+words[1]);
+     cout << itr->first << ":";
+     for (auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++) {
+       //     cout << vitr->size();
+       cout << *vitr << ",";
+     }
+   }
+
+   cout << "\n--------\n";
+     
+   // print Markov chain table
+   for(auto itr = map.begin(); itr!=map.end(); itr++) {
+     std::cout<<itr->first<<":";
+     for(auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++){
+       std::cout<<*vitr<<",";
+     }
+     std::cout<<std::endl;
+   }
+   
    // TODO: Generate markovian sentences
 
    return 0;
