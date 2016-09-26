@@ -1,0 +1,33 @@
+import json
+import sys
+
+username = sys.argv[1]
+chain_length = sys.argv[2]
+
+cmd = 'wget "http://mytwitterid.com/api/index.php?screen_name=alparslansari" -O userid'
+!$cmd
+
+with open('userid') as f:
+    data = f.read()
+    userid = json.loads(data)
+
+userid = userid[0]['id']
+
+cmd = 'twurl \"/1.1/statuses/user_timeline.json?user_id=117287685&screen_name='+username+'\" > tweets_src'
+!$cmd
+
+with open('tweets_src') as f:
+    data = f.read()
+    the_tweets = json.loads(data)
+    
+tweets = []
+for data in the_tweets:
+    tweet = ' '.join(data['text'].split()[1:])
+    tweets.append(tweet)
+tweets = '\n'.join(tweets).encode('utf-8')
+    
+with open('tweets', 'w') as f:
+    f.write(tweets)
+    
+cmd = './markovChain tweets ' + chain_length
+!$cmd
