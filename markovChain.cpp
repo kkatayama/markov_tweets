@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <cstdlib>
+#include <sstream>
 
 using namespace std;
 
@@ -18,6 +19,28 @@ int randomNumber(int limit)
    return rnd;
 }
 
+bool explode(string key, string data)
+{
+  string arr="";
+  stringstream ssin(data);
+  if(ssin.good())
+  {
+    ssin >> arr;
+  }
+  else
+  {
+    return false;
+  }
+
+  if(arr==key)
+    return true;
+  else
+    return false;
+}
+
+/*
+This function is for retriving an element from map based on an index value
+*/
 string* getMapPairByIndex(int index, map< string, vector< string > > map)
 {
   int counter = 0;
@@ -45,6 +68,39 @@ string* getMapPairByIndex(int index, map< string, vector< string > > map)
      } // End of IF
      counter++;
    } // End of FOR
+   return mapPair;
+} // End of FUNCTION
+
+string* getNPairValueByKey(int chain_length, string key, map< string, vector< string > > map)
+{
+  int counter = 0;
+  int rnd = 0;
+  string* mapPair = new string[2];
+  std::map< string, vector< string > > smap;
+
+  for(auto itr = map.begin(); itr!=map.end(); itr++) {
+     if(explode(key, itr-> first))
+     {
+        for(auto vitr = itr->second.begin(); vitr != itr->second.end(); vitr++){
+          smap[itr-> first].push_back(*vitr);
+        }
+     } // End of IF
+   } // End of FOR
+
+   if(smap.size()==1)
+   {
+    mapPair = getMapPairByIndex(0, smap);
+   }
+   else if(smap.size()>0)
+   {
+    rnd = randomNumber(smap.size());
+    mapPair = getMapPairByIndex(rnd, smap);
+   }
+   else
+   {
+    cout << "Unexpected error in getNPairValueeByKey" << endl;
+   }
+   
    return mapPair;
 } // End of FUNCTION
 
@@ -94,9 +150,9 @@ int main (int argc, char ** argv)
    std::cout << "* Alparslan Sari                                      *" << std::endl;
    std::cout << "*******************************************************" << std::endl;
    // Check the number of parameters
-   if (argc < 3) {
+   if (argc < 4) {
       // Tell the user how to run the program
-      std::cerr << "Usage: " << argv[0] << " FILE_NAME" << " CHAIN_LENGTH" << std::endl;
+      std::cerr << "Usage: " << argv[0] << " FILE_NAME" << " CHAIN_LENGTH" << " SENTENCE_LENGTH" << std::endl;
       /* "Usage messages" are a conventional way of telling the user
        * how to run a program if they enter the command incorrectly.
        */
@@ -121,7 +177,7 @@ int main (int argc, char ** argv)
    string word; // We will use the word as a temp variable.
    vector<string> words;
    int chain_length = stoi(argv[2]);
-   
+   int sentenceSize = stoi(argv[3]);
    while( fileReader >> word ) {
 
      // remove punctuation
@@ -192,7 +248,7 @@ int main (int argc, char ** argv)
    }
    cout << "\n--------\n";
    
-   // TODO: Generate markovian sentences
+   // Generate markovian sentences
    cout << "Generating markovian sentece..." << "\n";
    cout << "Vector size=" << map.size() << "\n";
    // generate random number
@@ -201,28 +257,37 @@ int main (int argc, char ** argv)
    // Grab the first word from map
    
    int sentenceCounter = 0;
-   int sentenceSize = 10;
    string finalSentence = "";
    string nextWord = ""; 
-   // -------
+   string* mapPair = new string[2];
+   mapPair = getMapPairByIndex(rnd, map);
+
+
   // Based on Chain Length
   if(chain_length==1)
   {
-    string* mapPair = new string[2];
-    mapPair = getMapPairByIndex(rnd, map);
     finalSentence = mapPair[0] + " " + mapPair[1];
     nextWord = mapPair[1];
     sentenceCounter=sentenceCounter+2;
-    while(sentenceSize>=sentenceCounter)
+    while(sentenceSize>sentenceCounter)
     {
       nextWord = getRandomPairValueByKey(nextWord, map);
       finalSentence = finalSentence + " " + nextWord;
       sentenceCounter++;
     }
   }
-  else if (chain_length==1)
+  else if (chain_length>1)
   {
-           
+    finalSentence = mapPair[0];
+    nextWord = mapPair[1];
+    sentenceCounter=sentenceCounter+chain_length+1;
+    while(sentenceSize>sentenceCounter)
+    {
+      mapPair = getNPairValueByKey(chain_length,mapPair[1],map);
+      finalSentence = finalSentence + " " + mapPair[0];
+      sentenceCounter=sentenceCounter+chain_length;
+    }
+
   }
   else
   {
@@ -230,7 +295,6 @@ int main (int argc, char ** argv)
     return -1;
   }
 
-   // -------
  cout << "\nSentence:"<< finalSentence<<"\n";
 
 
