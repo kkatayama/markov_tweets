@@ -1,11 +1,73 @@
-//#include <stdio>
 #include <fstream>
 #include <iostream>
-//#include <string>
 #include <map>
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
+
+/*
+ This function takes an integer as an input 
+ then generates a random number and returns it
+ -- should generate a number between 0 and 'limit'
+*/
+int randomNumber(int limit)
+{
+   srand(time(0));
+   int rnd = rand() % limit;
+   return rnd;
+}
+
+string* getMapPairByIndex(int index, map< string, vector< string > > map)
+{
+  int counter = 0;
+  int rnd = 0;
+  string* mapPair = new string[2];
+  for(auto itr = map.begin(); itr!=map.end(); itr++) {
+     if(counter == index)
+     {
+        std::cout<<"\n Key: "<<itr->first<<" ";
+        mapPair[0] = itr-> first;
+
+        if(itr->second.size()==1)
+        {
+          cout << "\n value:0 "<<itr->second.at(0) << "\n";
+          mapPair[1] = itr->second.at(0);
+        }
+        else
+        {
+          rnd = randomNumber(itr->second.size());
+          cout << "\n value:"<<rnd<<" :"<<itr->second.at(rnd) << "\n";
+          mapPair[1] = itr->second.at(rnd);
+        }
+        std::cout<<std::endl;
+        break; // break the loop!
+     } // End of IF
+     counter++;
+   } // End of FOR
+   return mapPair;
+} // End of FUNCTION
+
+string getRandomPairValueByKey(string keyv, map< string, vector< string > > map)
+{
+   string value = "";
+   int rnd = map.find(keyv)->second.size();
+   if(rnd==1)
+   {
+      value = map.find(keyv)->second.at(0); 
+   }
+   else if(rnd>1)
+   {
+      rnd = randomNumber(rnd);
+      value = map.find(keyv)->second.at(0);
+   }
+   else
+   {
+    cout<<"Unexpected Error in getRandomPairValueByKey!"<<endl;
+   }
+
+   return value;
+}
 
 string replace(string text, string sub_string, string replace_string) {
   int index = 0;
@@ -130,6 +192,46 @@ int main (int argc, char ** argv)
    }
    
    // TODO: Generate markovian sentences
+   cout << "Generating markovian sentece..." << "\n";
+   cout << "Vector size=" << map.size() << "\n";
+   // generate random number
+   int rnd = randomNumber(map.size());
+   cout << "randomNumber="<< rnd << "\n";
+   // Grab the first word from map
+   
+   int sentenceCounter = 0;
+   int sentenceSize = 10;
+   string finalSentence = "";
+   string nextWord = ""; 
+   // -------
+  // Based on Chain Length
+  if(chain_length==1)
+  {
+    string* mapPair = new string[2];
+    mapPair = getMapPairByIndex(rnd, map);
+    finalSentence = mapPair[0] + " " + mapPair[1];
+    nextWord = mapPair[1];
+    sentenceCounter=sentenceCounter+2;
+    while(sentenceSize>=sentenceCounter)
+    {
+      nextWord = getRandomPairValueByKey(nextWord, map);
+      finalSentence = finalSentence + " " + nextWord;
+      sentenceCounter++;
+    }
+  }
+  else if (chain_length==1)
+  {
+           
+  }
+  else
+  {
+    cout << "Unexpected chain length:"<<chain_length <<"! Exiting...\n";
+    return -1;
+  }
+
+   // -------
+ cout << "\nSentence:"<< finalSentence<<"\n";
+
 
    return 0;
 }
