@@ -77,7 +77,7 @@ int main (int argc, char ** argv)
    }
 
    // add ENDING for words
-   words.push_back("THE_END");
+   //   words.push_back("THE_END");
  
    // close the opened file.
    fileReader.close();
@@ -132,6 +132,5 @@ int main (int argc, char ** argv)
    
    // TODO: Generate markovian sentences
 
-   
    return 0;
 }
