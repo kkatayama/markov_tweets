@@ -188,6 +188,8 @@ int main (int argc, char ** argv)
      word = replace(word, "?", "");
      word = replace(word, "'", "");
      word = replace(word, "!", "");
+     word = replace(word, "(", "");
+     word = replace(word, ")", "");
 
      // add word to vector of strings
      words.push_back(word);
