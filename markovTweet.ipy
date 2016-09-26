@@ -2,9 +2,10 @@ import json
 import sys
 
 username = sys.argv[1]
-chain_length = sys.argv[2]
+sentence_length = sys.argv[2]
+chain_length = sys.argv[3]
 
-cmd = 'wget "http://mytwitterid.com/api/index.php?screen_name=alparslansari" -O userid'
+cmd = 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + ' -O userid'
 !$cmd
 
 with open('userid') as f:
@@ -29,5 +30,5 @@ tweets = '\n'.join(tweets).encode('utf-8')
 with open('tweets', 'w') as f:
     f.write(tweets)
     
-cmd = './markovChain tweets ' + chain_length
+cmd = './markovChain tweets ' + chain_length + ' ' + sentence_length
 !$cmd
