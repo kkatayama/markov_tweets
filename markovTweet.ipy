@@ -2,10 +2,10 @@ import json
 import sys
 
 username = sys.argv[1]
-sentence_length = sys.argv[2]
-chain_length = sys.argv[3]
+chain_length = sys.argv[2]
+sentence_length = sys.argv[3]
 
-cmd = 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + ' -O userid'
+cmd = 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid'
 !$cmd
 
 with open('userid') as f:
