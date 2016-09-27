@@ -148,6 +148,7 @@ int main (int argc, char ** argv)
    std::cout << "*********************** Authors ***********************" << std::endl;
    std::cout << "* Kaoru (Teddy) Katayama                              *" << std::endl;
    std::cout << "* Alparslan Sari                                      *" << std::endl;
+   std::cout << "* Pengcheng Zhou                                      *" << std::endl;
    std::cout << "*******************************************************" << std::endl;
    // Check the number of parameters
    if (argc < 4) {
