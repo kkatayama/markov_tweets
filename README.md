@@ -74,9 +74,15 @@ Script that comsumes a Twitter username and produces a tweet from my user accoun
 ```
 ipython markovBot.ipy HillaryClinton 2 16
 ipython markovBot.ipy realDonaldTrump 2 16
+
 ```
 
 ![img](https://github.com/kkatayama/project1/blob/master/trump_vs_clinton.png?raw=true)
+
+```
+#To Tweet every 10 seconds
+watch -n 10 ipython markovBot.ipy KimKardashian 2 12
+```
 
 <br />
 
