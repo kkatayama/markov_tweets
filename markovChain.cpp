@@ -298,7 +298,7 @@ int main (int argc, char ** argv)
     return -1;
   }
 
- cout << "\nSentence:"<< finalSentence<<"\n";
+ cout << "\nSentence: "<< finalSentence<<"\n";
 
 
    return 0;
