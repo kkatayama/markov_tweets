@@ -53,9 +53,9 @@ Sentence: now to find out how you can help! Xo is desperately searching for anyt
 ####Tools Used
 | Tool | Description |
 | --- | --- |
-| wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />used to retrieve the userid |
-| twurl | 'twurl \"/1.1/statuses/user_timeline.json?user_id='+str(userid)+'&screen_name='+username+'\"' <br />used to retrieve the latest tweets and save it to a file | 
-| markvoChain | used to generate markovian tweets :) |
+| wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />**used to retrieve the userid** |
+| twurl | 'twurl \"/1.1/statuses/user_timeline.json?user_id='+str(userid)+'&screen_name='+username+'\"' <br />**used to retrieve the latest tweets and save it to a file** | 
+| markvoChain | **used to generate markovian tweets :)** |
 
 <br />
 
@@ -83,9 +83,9 @@ ipython markovBot.ipy realDonaldTrump 2 16
 ####Tools Used
 | Tool | Description |
 | --- | --- |
-| wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />used to retrieve the userid |
-| twurl | 'twurl \"/1.1/statuses/user_timeline.json?user_id='+str(userid)+'&screen_name='+username+'\"' <br />used to retrieve the latest tweets and save it to a file | 
-| markvoChain | './markovChain tweets ' + chain_length + ' ' + sentence_length <br />used to generate markovian tweets :) |
-| t | 't update \"' + tweet + '\"' <br />used to post tweet using my account |
+| wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />**used to retrieve the userid** |
+| twurl | 'twurl \"/1.1/statuses/user_timeline.json?user_id='+str(userid)+'&screen_name='+username+'\"' <br />**used to retrieve the latest tweets and save it to a file** | 
+| markvoChain | './markovChain tweets ' + chain_length + ' ' + sentence_length <br />**used to generate markovian tweets :)** |
+| t | 't update \"' + tweet + '\"' <br />**used to post tweet using my account** |
 
 <br />
