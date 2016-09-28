@@ -14,7 +14,7 @@ with open('userid') as f:
 
 userid = userid[0]['id']
 
-cmd = 'twurl \"/1.1/statuses/user_timeline.json?user_id=117287685&screen_name='+username+'\" > tweets_src'
+cmd = 'twurl \"/1.1/statuses/user_timeline.json?user_id='+userid+'&screen_name='+username+'\" > tweets_src'
 !$cmd
 
 with open('tweets_src') as f:
