@@ -14,7 +14,7 @@ C++ program that reads in a text file containing sentences and produces a Markov
 
 ####Example
 ```
-./markovChain constitution.txt 2 16
+$ ./markovChain constitution.txt 2 16
 
 Sentence: in going to Grant Reprieves and Pardons for Offenses against the beginning of Rebellion or other
 
@@ -43,7 +43,7 @@ Script that consumes a Twitter username, captures their tweets into a textfile, 
 
 ####Example
 ```
-ipython markovTweet.ipy KimKardashian 2 16
+$ ipython markovTweet.ipy KimKardashian 2 16
 
 Sentence: now to find out how you can help! Xo is desperately searching for anything from you
 
@@ -72,8 +72,8 @@ Script that comsumes a Twitter username and produces a tweet from my user accoun
 
 ####Example
 ```
-ipython markovBot.ipy HillaryClinton 2 16
-ipython markovBot.ipy realDonaldTrump 2 16
+$ ipython markovBot.ipy HillaryClinton 2 16
+$ ipython markovBot.ipy realDonaldTrump 2 16
 
 ```
 
