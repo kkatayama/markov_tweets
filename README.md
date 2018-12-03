@@ -13,7 +13,8 @@ C++ program that reads in a text file containing sentences and produces a Markov
 
 <br />
 
-####Example
+Example
+---
 ```
 $ ./markovChain constitution.txt 2 16
 
@@ -22,7 +23,8 @@ Sentence: in going to Grant Reprieves and Pardons for Offenses against the begin
 ```
 <br />
 
-####Parameter Description
+Parameter Description
+---
 | Parameter | Description |
 | --- | --- |
 | FILE_NAME | Text file containing sentences |
@@ -31,7 +33,8 @@ Sentence: in going to Grant Reprieves and Pardons for Offenses against the begin
 
 <br />
 
-##Phase 2
+Phase 2
+===
 Script that consumes a Twitter username, captures their tweets into a textfile, and then feeds this file into our markovChain binary.
 
 |  |  |
@@ -42,7 +45,8 @@ Script that consumes a Twitter username, captures their tweets into a textfile, 
 
 <br />
 
-####Example
+Example
+---
 ```
 $ ipython markovTweet.ipy KimKardashian 2 16
 
@@ -51,7 +55,8 @@ Sentence: now to find out how you can help! Xo is desperately searching for anyt
 ```
 <br />
 
-####Tools Used
+Tools Used
+---
 | Tool | Description |
 | --- | --- |
 | wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />**used to retrieve the userid** |
@@ -60,7 +65,8 @@ Sentence: now to find out how you can help! Xo is desperately searching for anyt
 
 <br />
 
-##Phase 3
+Phase 3
+===
 Script that comsumes a Twitter username and produces a tweet from my user account.
 
 |  |  |
@@ -71,7 +77,8 @@ Script that comsumes a Twitter username and produces a tweet from my user accoun
 
 <br />
 
-####Example
+Example
+---
 ```
 $ ipython markovBot.ipy HillaryClinton 2 16
 $ ipython markovBot.ipy realDonaldTrump 2 16
@@ -80,7 +87,8 @@ $ ipython markovBot.ipy realDonaldTrump 2 16
 
 ![img](https://github.com/kkatayama/project1/blob/master/trump_vs_clinton.png?raw=true)
 
-####To Tweet every 10 seconds
+To Tweet every 10 seconds
+---
 ```bash
 $ watch -n 10 ipython markovBot.ipy KimKardashian 2 12
 
