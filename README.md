@@ -144,7 +144,8 @@ flix Amanda:Knox,', 'No make:up,', 'Paris https//tco/VXw2P2GTvU:COUTURE,', 'Pari
 
 <br />
 
-####Tools Used
+Tools Used
+---
 | Tool | Description |
 | --- | --- |
 | wget | 'wget "http://mytwitterid.com/api/index.php?screen_name=' + username + '" -O userid' <br />**used to retrieve the userid** |
