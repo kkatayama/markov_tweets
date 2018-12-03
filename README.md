@@ -1,5 +1,5 @@
 Markov Chain Generator Manual
-==============================
+===
 
 ##Phase 1
 C++ program that reads in a text file containing sentences and produces a Markovian tweet with the style of the input text.  
